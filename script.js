@@ -1,31 +1,30 @@
-let counter = document.querySelector('.counter');
-const addCount = document.querySelector('#addCountBtn');
-const lowerCount = document.querySelector('#lowerCountBtn');
+var cardA = 0;
+var cardB = 0;
+var scoreA = 0;
+var scoreB = 0;
 
-let count = localStorage.getItem('Count');
-
-addCount.addEventListener('click', incrementCounter);
-lowerCount.addEventListener('click', decrementCounter);
-
-function incrementCounter(){
-    count++;
-    localStorage.setItem('Count', count);
-    counter.innerHTML = 'עוד ' + localStorage.getItem('Count') + ' ימים';
-
-    if(counter.innerHTML>'0'){
-        counter.style.color = 'green'
-    }else if(counter.innerHTML === '0'){
-        counter.style.color = 'black';
-    }
+function randomA(){
+    cardA = Math.ceil(Math.random()*4) // מעגל כלפי מעלה | floor - כלפי מטה 
+    placeA.src = "img/card"+cardA+".gif"
 }
 
-function decrementCounter(){
-    count--;
-    localStorage.setItem('Count', count);
-    counter.innerHTML = 'עוד ' + localStorage.getItem('Count') + ' ימים';
-    if(counter.innerHTML<'0'){
-        counter.style.color = 'red';
-    }else if(counter.innerHTML === '0'){
-        counter.style.color = 'white';
+function randomB(){
+    cardB = Math.ceil(Math.random()*4) // מעגל כלפי מעלה | floor - כלפי מטה 
+    placeB.src = "img/card"+cardB+".gif"
+}
+
+function checkWin(){
+    if(cardA > cardB){
+        alert("A Win")
+        scoreA++;
     }
+    if(cardA < cardB){
+        alert("B Win")
+        scoreB++;
+    }
+    if(cardA == cardB){
+        alert("Draw")
+    }
+    player1.innerHTML = scoreA;
+    player2.innerHTML = scoreB;
 }
